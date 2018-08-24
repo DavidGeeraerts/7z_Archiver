@@ -1,0 +1,24 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Author:		David Geeraerts																::
+:: Location:	Olympia, Washington USA														::
+:: E-Mail:		dgeeraerts.evergreen@gmail.com												::
+::																							::
+::	Copyright License																		::
+:: 	Creative Commons: Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)	::
+:: 	http://creativecommons.org/licenses/by-nc-sa/3.0/										::
+::																							::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+################################
+Features Flags
+--------------
+[+] New feature has been added
+[!] Feature has been improved
+[#] Feature has been fixed
+[-] Feature has been removed
+#################################
+
+
+2018-08-24  VERSION 1.5.0
+--  [!]  Improved commandlet overall.
+--  [+] Added option to cleanup source folders that have been sucessfully archived. 
