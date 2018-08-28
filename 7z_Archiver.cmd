@@ -25,7 +25,7 @@
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 SET SCRIPT_NAME=7z_Archiver
-SET SCRIPT_VERSION=1.5.0
+SET SCRIPT_VERSION=1.6.0
 Title %SCRIPT_NAME% Version: %SCRIPT_VERSION%
 Prompt 7z$G
 color 8A
@@ -43,7 +43,7 @@ color 8A
 :: SET ARCHIVE_SOURCE_FOLDER=%USERPROFILE%\Documents
 
 :: One Off Archive
-::	ARCHIVE_NAME: What to nake the archive
+::	ARCHIVE_NAME: What to make the archive
 ::	i.e. D:\Mounts\Archives\research\research
 ::		...the name will automatically be appended with the compression method: <ARCHIVE_NAME>.7z
 SET ARCHIVE_NAME=
@@ -118,6 +118,14 @@ SET "ARCHIVE_FILE_EXCLUDE=-xr!*.tmp -xr!.DS_STORE -xr!._.DS_STORE -xr!._*"
 ::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+:: Calculate lapse time by capturing start time
+::	Parsing %TIME% variable to get an interger number
+FOR /F "tokens=1 delims=:." %%h IN ("%TIME%") DO SET S_hh=%%h
+FOR /F "tokens=2 delims=:." %%h IN ("%TIME%") DO SET S_mm=%%h
+FOR /F "tokens=3 delims=:." %%h IN ("%TIME%") DO SET S_ss=%%h
+FOR /F "tokens=4 delims=:." %%h IN ("%TIME%") DO SET S_ms=%%h							  
+:: Make sure log path exists, if not create, and use as a test
+IF NOT EXIST %ARCHIVE_LOG_LOCATION% MD %ARCHIVE_LOG_LOCATION%																			   
 ECHO START %DATE% %TIME% >> %ARCHIVE_LOG_LOCATION%\%ARCHIVE_LOG_FILE%
 ECHO. >> %ARCHIVE_LOG_LOCATION%\%ARCHIVE_LOG_FILE%
 HOSTNAME >> %ARCHIVE_LOG_LOCATION%\%ARCHIVE_LOG_FILE%
@@ -178,6 +186,27 @@ FOR /F %%K IN ('DIR /B /A:D "%ARCHIVE_BULK_FOLDER%"') Do (TYPE %ARCHIVE_LOG_LOCA
 DEL /Q %ARCHIVE_LOG_LOCATION%\var_*.txt
 
 :skipBA
+
+:Time
+:: Calculate lapse time by capturing end time
+::	Parsing %TIME% variable to get an interger number
+FOR /F "tokens=1 delims=:." %%h IN ("%TIME%") DO SET E_hh=%%h
+FOR /F "tokens=2 delims=:." %%h IN ("%TIME%") DO SET E_mm=%%h
+FOR /F "tokens=3 delims=:." %%h IN ("%TIME%") DO SET E_ss=%%h
+FOR /F "tokens=4 delims=:." %%h IN ("%TIME%") DO SET E_ms=%%h
+
+:: Calculate the actual lapse time
+IF %E_hh% GEQ %S_hh% (SET /A "L_hh=%E_hh%-%S_hh%") ELSE (SET /A "L_hh=%S_hh%-%E_hh%")
+IF %E_mm% GEQ %S_mm% (SET /A "L_mm=%E_mm%-%S_mm%") ELSE (SET /A "L_mm=%S_mm%-%E_mm%")
+IF %E_ss% GEQ %S_ss% (SET /A "L_ss=%E_ss%-%S_ss%") ELSE (SET /A "L_ss=%S_ss%-%E_ss%")
+IF %E_ms% GEQ %S_ms% (SET /A "L_ms=%E_ms%-%S_ms%") ELSE (SET /A "L_ms=%S_ms%-%E_ms%")
+:: turn hours into minutes and add to total minutes
+IF %L_hh% GTR 0 SET /A "L_hhh=%L_hh%*60"
+IF %L_hh% EQU 0 SET L_hhh=0
+IF %L_hhh% GTR 0 SET /A "L_tm=%L_hhh%+%L_mm%"
+IF %L_hhh% EQU 0 SET L_tm=%L_mm%
+:: Lapse Time
+ECHO Time Lapsed (mm:ss.ms): %L_tm%:%L_ss%.%L_ms% >> %ARCHIVE_LOG_LOCATION%\%ARCHIVE_LOG_FILE%
 
 :EOF
 ECHO END %DATE% %TIME% >> %ARCHIVE_LOG_LOCATION%\%ARCHIVE_LOG_FILE%

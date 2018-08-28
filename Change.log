@@ -19,6 +19,10 @@ Features Flags
 #################################
 
 
+2018-08-28 VERSION 1.6.0
+--	[+]	Added time lapse feature
+--	[+] Added checking log output location
+
 2018-08-24  VERSION 1.5.0
---  [!]  Improved commandlet overall.
---  [+] Added option to cleanup source folders that have been sucessfully archived. 
+--	[!]	Improved commandlet overall.
+--	[+]	Added option to cleanup source folders that have been sucessfully archived. 
