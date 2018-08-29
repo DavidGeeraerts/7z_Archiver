@@ -18,6 +18,9 @@ Features Flags
 [-] Feature has been removed
 #################################
 
+2018-08-29 VERSION 2.0.0
+-- [+]	Added configuration file. Drop into commandlet directory.
+-- [!]	Improved debugging. 
 
 2018-08-28 VERSION 1.7.0
 -- [#]	Fixed issue with removing Single Archive folder if it was also set for bulk processing.
