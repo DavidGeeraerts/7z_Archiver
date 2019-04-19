@@ -1,13 +1,21 @@
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: Author:		David Geeraerts																::
-:: Location:	Olympia, Washington USA														::
-:: E-Mail:		dgeeraerts.evergreen@gmail.com												::
-::																							::
-::	Copyright License																		::
-:: 	Creative Commons: Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)	::
-:: 	http://creativecommons.org/licenses/by-nc-sa/3.0/										::
-::																							::
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+###############################################################################
+# Author:	David Geeraerts
+# Location:	Olympia, Washington USA
+# E-Mail:	dgeeraerts.evergreen@gmail.com
+###############################################################################
+
+###############################################################################
+# Copyleft License(s)
+# GNU GPL (General Public License)
+# https://www.gnu.org/licenses/gpl-3.0.en.html
+###############################################################################
+
+
+
+########################
+# PROJECT: 7z Archiver #
+########################
+
 
 ################################
 Features Flags
@@ -17,6 +25,29 @@ Features Flags
 [#] Feature has been fixed
 [-] Feature has been removed
 #################################
+
+2019-04-19
+-- [!]	Changed Copyleft license to GNU GPL 3
+-- [!]	Major rewrite of wrapper
+-- [!]	Improved console output
+-- [!]	Config file schema
+-- [+]	Logging level
+-- [+]	Trace
+-- [!]	Debugging
+-- [!]	script notes
+-- [+]	Description
+-- [+]	Lapse time
+-- [+]	ISO Date
+-- [+]	7z Checking
+-- [+]	7z Archive type 
+-- [!]	Single archiver improvements
+-- [!]	Bulk archiver improvements
+-- [+]	var folder cleanup
+-- [+]	Log file shipping
+-- [+]	Bulk archive shipping
+
+
+
 
 2018-08-29 VERSION 2.0.0
 -- [+]	Added configuration file. Drop into commandlet directory.
